@@ -241,5 +241,11 @@ async def download_image(
     return FileResponse(path, media_type="image/png", filename=filename)
 
 if __name__ == "__main__":
+    from dotenv import load_dotenv
     import uvicorn
-    uvicorn.run("main:app", host="127.0.0.1", port=8000, reload=True)
+    import os
+
+    load_dotenv()
+    
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="127.0.0.1", port=port)
